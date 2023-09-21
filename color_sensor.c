@@ -45,8 +45,7 @@ void set_color_to_detect(uint8_t color){
 unsigned int read_color_sensor(unsigned int out_pin){
     duration = 0;
     while((COLOR_SENSOR_OUTPUT&out_pin) == out_pin);
-    while(((COLOR_SENSOR_OUTPUT&out_pin) != out_pin) && (duration<20000))
-    {
+    while(((COLOR_SENSOR_OUTPUT&out_pin) != out_pin) && (duration<20000)){
       _delay_us(1);
       duration++;
     }
