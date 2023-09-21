@@ -1,1 +1,9 @@
 .vscode/settings.json
+bin/debug/color_sensor.d
+bin/debug/color_sensor.o
+bin/debug/main.d
+bin/debug/main.o
+bin/debug/uart.d
+bin/debug/uart.o
+color_sensor.hex
+color_sensor.map

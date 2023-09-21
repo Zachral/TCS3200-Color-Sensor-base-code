@@ -27,8 +27,11 @@ all: $(OUTPUTDIR)  $(OUT)
 
 $(OBJS): Makefile
 
-$(OUTPUTDIR)/%.o:%.c
+$(OUTPUTDIR)/%.o:%.c | $(OUTPUTDIR)
 	$(CC) $(CFLAGS) -MD -o $@ -c $<
+
+$(OUTPUTDIR):
+	@mkdir -p "$(OUTPUTDIR)"
 
 %.lss: %.elf
 	$(OBJDUMP) -h -S -s $< > $@
@@ -49,8 +52,5 @@ isp: ${BIN}.hex
 
 clean:
 	del "$(OUT)"  *.map *.P *.d
-
-$(OUTPUTDIR): 
-	@mkdir "$(OUTPUTDIR)"
 		   	
 .PHONY: clean dirs

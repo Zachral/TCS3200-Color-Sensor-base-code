@@ -11,19 +11,18 @@ int main(){
 
     while (1){
         set_color_to_detect(RED);
-        redFrequency = read_color_sensor(OUT_PIN); 
-        printf("R = %d\t", redFrequency); 
+        redFrequency = read_color_sensor(OUT_PIN,255); 
         _delay_ms(100);
 
         set_color_to_detect(GREEN);
-        greenFrequency = read_color_sensor(OUT_PIN);
-        printf("G= %d\t", greenFrequency);
+        greenFrequency = read_color_sensor(OUT_PIN,255);
         _delay_ms(100);
 
         set_color_to_detect(BLUE);
-        blueFrequency = read_color_sensor(OUT_PIN);
-        printf("B = %d\n", blueFrequency);
+        blueFrequency = read_color_sensor(OUT_PIN,255);
         _delay_ms(100); 
+
+        printf("R = %d, G = %d, B = %d\n", redFrequency, greenFrequency, blueFrequency);
     }
-return 0; 
+    return 0; 
 }
