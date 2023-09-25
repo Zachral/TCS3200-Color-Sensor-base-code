@@ -15,8 +15,8 @@ void color_sensor_init(){
     COLOR_SENSOR_PORT_DIRECTION_S0_S1_OUT   &= ~(1<<OUT_PIN);
 
     //Set scaling to 20% - recomended for arduino
-    COLOR_SENSOR_PORT_S0_S1_OUT             |= (1<<S0_PIN);
-    COLOR_SENSOR_PORT_S0_S1_OUT             &= ~(1<<S1_PIN);
+    COLOR_SENSOR_PORT_S0_S1_OUT             &= ~(1<<S0_PIN);
+    COLOR_SENSOR_PORT_S0_S1_OUT             |= (1<<S1_PIN);
     printf("I am set up!\n");
    
 }
@@ -26,41 +26,47 @@ void set_color_to_detect(uint8_t color){
   switch (color){
   case RED:
       //Sets the sensor to detect red
-      COLOR_SENSOR_PORT_S2_S3                   &= ~(1<<S2_PIN);
-      COLOR_SENSOR_PORT_S2_S3                   &= ~(1<<S3_PIN);
+      // COLOR_SENSOR_PORT_S2_S3                   &= ~(1<<S2_PIN);
+      // COLOR_SENSOR_PORT_S2_S3                   &= ~(1<<S3_PIN);
+      COLOR_SENSOR_PIN_S2_S3                       &= ~(1<<S2_PIN);
+      COLOR_SENSOR_PIN_S2_S3                       &= ~(1<<S3_PIN);
       break;
   case GREEN:
       //Sets the sensor to detect green
-      COLOR_SENSOR_PORT_S2_S3                   |= (1<<S2_PIN);
-      COLOR_SENSOR_PORT_S2_S3                   |= (1<<S3_PIN);
+      // COLOR_SENSOR_PORT_S2_S3                   |= (1<<S2_PIN);
+      // COLOR_SENSOR_PORT_S2_S3                   |= (1<<S3_PIN);
+      COLOR_SENSOR_PIN_S2_S3                       |= (1<<S2_PIN);
+      COLOR_SENSOR_PIN_S2_S3                       |= (1<<S3_PIN);
       break;
   case BLUE:
       //Sets the sensor to detect blue
-      COLOR_SENSOR_PORT_S2_S3                   &= ~(1<<S2_PIN);
-      COLOR_SENSOR_PORT_S2_S3                   |= (1<<S3_PIN);
+      // COLOR_SENSOR_PORT_S2_S3                   &= ~(1<<S2_PIN);
+      // COLOR_SENSOR_PORT_S2_S3                   |= (1<<S3_PIN);
+      COLOR_SENSOR_PIN_S2_S3                       &= ~(1<<S2_PIN);
+      COLOR_SENSOR_PIN_S2_S3                       |= (1<<S3_PIN);
       break;
   default:
     break;
   }
 }
 
-unsigned int read_color_sensor(unsigned int out_pin, unsigned int timeout){
+unsigned int read_color_sensor(unsigned int out_pin,unsigned int timeout){
     unsigned int pulseWidth = 0, iterations = 0, maxIterations = microsecondsToClockCycles(timeout)/16;
     //wait for the pulse before to end
    
     while (!(BIT_CHECK(COLOR_SENSOR_OUTPUT,out_pin))) {
       //returns if there is no signal
-      if(iterations++ == maxIterations) return 0;
+      //if(iterations++ == maxIterations) return 0;
     }
 
     //wait for signal to go low
     while(BIT_CHECK(COLOR_SENSOR_OUTPUT,out_pin)){
-      if(iterations++ ==  maxIterations) return 0;
+     // if(iterations++ ==  maxIterations) return 0;
     }
 
     //start reading the low signal until it goes high
     while (!(BIT_CHECK(COLOR_SENSOR_OUTPUT,out_pin))){
-      if(iterations++ == maxIterations) return 0;
+     // if(iterations++ == maxIterations) return 0;
       pulseWidth++;
     }
 

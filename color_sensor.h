@@ -11,6 +11,7 @@
 #define COLOR_SENSOR_PORT_S2_S3                 PORT_(COLOR_SENSOR_PORT_INDEX_S2_S3)
 #define COLOR_SENSOR_PORT_S0_S1_OUT             PORT_(COLOR_SENSOR_PORT_INDEX_S0_S1_OUT)
 #define COLOR_SENSOR_OUTPUT                     PIN_(COLOR_SENSOR_PORT_INDEX_S0_S1_OUT)
+#define COLOR_SENSOR_PIN_S2_S3                  PIN_(COLOR_SENSOR_PORT_INDEX_S2_S3)
 #define S0_PIN                                  PIND2
 #define S1_PIN                                  PIND3
 #define S2_PIN                                  PINB1
